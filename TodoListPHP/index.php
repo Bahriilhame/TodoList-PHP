@@ -1,20 +1,11 @@
 <?php
-// Database connection parameters.
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
-define('DB_NAME', 'todolist');
-define('DB_HOST', 'localhost');
-define('DB_PORT', '3306');
 
-// Connect to MySQL
 $mysqli = new mysqli('localhost', 'root', 'root', 'todolist');
 
-// Check connection
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Retrieve tasks from the database
 $sql = "SELECT * FROM todo ORDER BY created_at DESC";
 $result = $mysqli->query($sql);
 
@@ -25,7 +16,6 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Handle POST requests
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
@@ -48,17 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-<!-- HTML with Bootstrap (Front-end) -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>To-Do List</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -90,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
